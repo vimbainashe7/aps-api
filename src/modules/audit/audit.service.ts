@@ -15,6 +15,8 @@ export interface AuditRecord {
 @Injectable()
 export class AuditService {
   async record(_tx: TransactionClient, _record: AuditRecord): Promise<void> {
+    void _tx;
+    void _record;
     // Domain API repositories create concrete audit tables after ownership is ratified.
   }
 }

@@ -11,6 +11,9 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
   }
 
   async onModuleDestroy(): Promise<void> {
+    if (process.env.NODE_ENV === 'test') {
+      return;
+    }
     await this.$disconnect();
   }
 }

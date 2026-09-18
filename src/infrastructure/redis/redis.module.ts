@@ -1,8 +1,17 @@
-import { Global, Module } from '@nestjs/common';
+import { Global, Inject, Injectable, Module, OnModuleDestroy } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
 
 export const REDIS_CLIENT = Symbol('REDIS_CLIENT');
+
+@Injectable()
+class RedisShutdownService implements OnModuleDestroy {
+  constructor(@Inject(REDIS_CLIENT) private readonly redis: Redis) {}
+
+  onModuleDestroy(): void {
+    this.redis.disconnect();
+  }
+}
 
 @Global()
 @Module({
@@ -18,7 +27,8 @@ export const REDIS_CLIENT = Symbol('REDIS_CLIENT');
           maxRetriesPerRequest: null,
           lazyConnect: process.env.NODE_ENV === 'test'
         })
-    }
+    },
+    RedisShutdownService
   ],
   exports: [REDIS_CLIENT]
 })
