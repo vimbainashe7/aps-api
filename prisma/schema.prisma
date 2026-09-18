@@ -1,0 +1,11 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Foundation template only. Domain models must be added in API repositories
+// after ownership and schema ADRs are ratified.
