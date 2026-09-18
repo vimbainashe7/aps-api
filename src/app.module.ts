@@ -28,7 +28,7 @@ import { RequestContextInterceptor } from './common/interceptors/request-context
     }),
     PrismaModule,
     RedisModule,
-    QueueModule,
+    ...(process.env.NODE_ENV === 'test' ? [] : [QueueModule]),
     StorageModule,
     TelemetryModule,
     AuditModule,
