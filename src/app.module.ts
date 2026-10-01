@@ -12,6 +12,7 @@ import { RedisModule } from './infrastructure/redis/redis.module';
 import { StorageModule } from './infrastructure/storage/storage.module';
 import { TelemetryModule } from './infrastructure/telemetry/telemetry.module';
 import { AuditModule } from './modules/audit/audit.module';
+import { AutomationModule } from './modules/automation/automation.module';
 import { FoundationModule } from './modules/foundation/foundation.module';
 import { HealthModule } from './modules/health/health.module';
 import { JsonLogger } from './common/logging/logger.service';
@@ -32,6 +33,7 @@ import { RequestContextInterceptor } from './common/interceptors/request-context
     StorageModule,
     TelemetryModule,
     AuditModule,
+    AutomationModule,
     HealthModule,
     FoundationModule
   ],
